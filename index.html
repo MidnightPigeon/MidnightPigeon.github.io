@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="MidnightPigeon 的个人主页，记录项目、想法与联系方式。">
     <title>MidnightPigeon</title>
-    <link rel="stylesheet" href="./styles.css?v=20260716a">
+    <link rel="stylesheet" href="./styles.css?v=20260731a">
   </head>
   <body>
     <header class="site-header">
@@ -16,7 +16,6 @@
       <nav class="nav" aria-label="主导航">
         <a href="#about">ABOUT</a>
         <a href="#projects">WORK</a>
-        <a href="#essays">ESSAYS</a>
         <a href="#contact">LINKS</a>
       </nav>
       <button class="theme-toggle" type="button" aria-label="切换明暗主题" data-theme-toggle>
@@ -60,36 +59,9 @@
         <div class="card-grid" data-project-list></div>
       </section>
 
-      <section class="section" id="essays" aria-labelledby="essays-title">
-        <div class="section-heading">
-          <p class="eyebrow">03 / ESSAYS</p>
-          <h2 id="essays-title">随想集</h2>
-        </div>
-        <div class="essay-tools">
-          <label class="search-box">
-            <span>SEARCH</span>
-            <input type="search" placeholder="查找标题、标签或摘要" data-essay-search>
-          </label>
-          <button class="refresh-button secondary-action" type="button" data-essay-submit>查找</button>
-          <button class="refresh-button" type="button" data-essay-refresh>随便看看</button>
-        </div>
-        <div class="essay-grid" data-essay-list aria-live="polite"></div>
-        <div class="essay-preview" data-essay-preview hidden>
-          <div class="preview-window">
-            <div class="window-bar">
-              <span></span>
-              <span></span>
-              <span></span>
-              <button type="button" aria-label="关闭预览" data-preview-close>关闭</button>
-            </div>
-            <article class="preview-body" data-preview-body></article>
-          </div>
-        </div>
-      </section>
-
       <section class="section" id="contact" aria-labelledby="contact-title">
         <div class="section-heading">
-          <p class="eyebrow">04 / LINKS</p>
+          <p class="eyebrow">03 / LINKS</p>
           <h2 id="contact-title">站点链接</h2>
         </div>
         <div class="contact" data-link-list></div>
@@ -101,6 +73,6 @@
       <a href="#top">BACK TO TOP</a>
     </footer>
 
-    <script src="./script.js?v=20260716a"></script>
+    <script src="./script.js?v=20260731a"></script>
   </body>
 </html>
