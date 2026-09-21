@@ -172,6 +172,68 @@ async function loadLinks() {
   }
 }
 
+const pricingDialog = document.querySelector("[data-pricing-dialog]");
+document.querySelector("[data-pricing-close]")?.addEventListener("click", () => pricingDialog.close());
+pricingDialog?.addEventListener("click", (event) => {
+  const bounds = pricingDialog.getBoundingClientRect();
+  if (event.target === pricingDialog && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) {
+    pricingDialog.close();
+  }
+});
+
+function bindPricingButtons(container, tasks) {
+  container.querySelectorAll("[data-pricing]").forEach((button, index) => {
+    button.addEventListener("click", () => {
+      const task = tasks[index];
+      pricingDialog.querySelector("#pricing-title").textContent = task.name;
+      pricingDialog.querySelector("[data-pricing-rules]").innerHTML = task.rules.map((rule) => `<p>${escapeHtml(rule)}</p>`).join("");
+      pricingDialog.showModal();
+    });
+  });
+}
+
+function pricingAction(task) {
+  return `<span>${escapeHtml(task.price)}</span><button type="button" class="pricing-trigger" data-pricing aria-haspopup="dialog" aria-label="${escapeHtml(task.name)}：计费规则">计费规则</button>`;
+}
+
+async function loadSpecialService() {
+  const container = document.querySelector("[data-special-service]");
+  if (!container) return;
+  try {
+    const task = await fetchJson("./context/special-service.json");
+    container.innerHTML = `<h3>${escapeHtml(task.name)}</h3><div class="service-quote">${pricingAction(task)}</div>`;
+    bindPricingButtons(container, [task]);
+  } catch {
+    container.textContent = "特殊项目加载失败，请稍后重试。";
+  }
+}
+
+async function loadServices() {
+  const serviceList = document.querySelector("[data-service-list]");
+  if (!serviceList) return;
+
+  serviceList.textContent = "正在加载业务内容……";
+  try {
+    const groups = await fetchJson("./context/services.json");
+    serviceList.innerHTML = `
+      <table class="service-table" aria-labelledby="services-title">
+        <colgroup><col class="service-category"><col><col class="service-price"></colgroup>
+        <thead><tr><th scope="col">板块</th><th scope="col">任务</th><th scope="col">报价</th></tr></thead>
+        ${groups.map((group) => `<tbody>${group.tasks.map((task, index) => `
+          <tr>
+            ${index === 0 ? `<th scope="rowgroup" rowspan="${group.tasks.length}">${escapeHtml(group.category)}</th>` : ""}
+            <th scope="row">${escapeHtml(task.name)}</th>
+            <td><div class="service-quote">${pricingAction(task)}</div></td>
+          </tr>`).join("")}</tbody>`).join("")}
+      </table>`;
+    bindPricingButtons(serviceList, groups.flatMap((group) => group.tasks));
+  } catch {
+    serviceList.textContent = "业务内容加载失败，请稍后重试。";
+  }
+}
+
 loadAbout();
+loadServices();
+loadSpecialService();
 loadProjects();
 loadLinks();

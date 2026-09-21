@@ -409,6 +409,108 @@ h3 {
   overflow-wrap: anywhere;
 }
 
+.service-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  background: var(--panel);
+  border: 2px solid var(--line);
+}
+
+.service-category { width: 80px; }
+.service-price { width: 24%; }
+.service-quote { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; }
+.service-quote > span { font-size: 0.88rem; }
+.pricing-trigger {
+  padding: 4px 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font: inherit;
+  font-size: 0.85rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+.special-service {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 24px;
+  margin-top: 20px;
+  padding: 16px 0;
+  border-block: 2px solid var(--line);
+}
+.special-service h3 { margin: 0; }
+.pricing-dialog {
+  width: min(520px, calc(100% - 32px));
+  max-height: calc(100dvh - 48px);
+  padding: 22px;
+  border: 2px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  box-shadow: 6px 6px 0 var(--line);
+  overflow-y: auto;
+}
+.pricing-dialog::backdrop { background: rgb(0 0 0 / 65%); }
+.pricing-heading { display: flex; align-items: start; gap: 16px; margin-bottom: 16px; }
+.pricing-heading h2 { flex: 1; font-size: 1.15rem; line-height: 1.5; }
+.pricing-close {
+  flex: 0 0 32px;
+  height: 32px;
+  border: 1px solid var(--line);
+  background: var(--panel-alt);
+  color: var(--ink);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+.pricing-dialog p:last-child { margin-bottom: 0; }
+body:has(.pricing-dialog[open]) { overflow: hidden; }
+
+.service-table th,
+.service-table td {
+  padding: 10px 16px;
+  border: 1px solid var(--muted);
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.service-table thead,
+.service-table th[scope="rowgroup"] {
+  background: var(--panel-alt);
+  color: var(--accent);
+}
+
+.service-table th[scope="rowgroup"] {
+  vertical-align: top;
+}
+
+.service-table th[scope="row"] {
+  font-weight: 400;
+}
+
+.service-table tbody + tbody {
+  border-top: 2px solid var(--line);
+}
+
+.service-contact {
+  margin: 18px 0 0;
+  overflow-wrap: anywhere;
+}
+
+.service-contact a {
+  color: var(--accent);
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 480px) {
+  .service-category { width: 54px; }
+  .service-table th,
+  .service-table td { padding: 9px 8px; }
+}
+
 .card-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

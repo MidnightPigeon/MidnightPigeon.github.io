@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="MidnightPigeon 的个人主页，记录项目、想法与联系方式。">
     <title>MidnightPigeon</title>
-    <link rel="stylesheet" href="./styles.css?v=20260731a">
+    <link rel="stylesheet" href="./styles.css?v=20260922b">
   </head>
   <body>
     <header class="site-header">
@@ -15,6 +15,7 @@
       </a>
       <nav class="nav" aria-label="主导航">
         <a href="#about">ABOUT</a>
+        <a href="#services">SERVICES</a>
         <a href="#projects">WORK</a>
         <a href="#contact">LINKS</a>
       </nav>
@@ -51,9 +52,19 @@
         </div>
       </section>
 
+      <section class="section" id="services" aria-labelledby="services-title">
+        <div class="section-heading">
+          <p class="eyebrow">02 / SERVICES</p>
+          <h2 id="services-title">承接业务</h2>
+        </div>
+        <div data-service-list aria-live="polite"></div>
+        <div class="special-service" data-special-service></div>
+        <p class="service-contact"><a href="mailto:Midnight_Pigeon@outlook.com">Midnight_Pigeon@outlook.com</a></p>
+      </section>
+
       <section class="section" id="projects" aria-labelledby="projects-title">
         <div class="section-heading">
-          <p class="eyebrow">02 / PROJECTS</p>
+          <p class="eyebrow">03 / PROJECTS</p>
           <h2 id="projects-title">项目</h2>
         </div>
         <div class="card-grid" data-project-list></div>
@@ -61,7 +72,7 @@
 
       <section class="section" id="contact" aria-labelledby="contact-title">
         <div class="section-heading">
-          <p class="eyebrow">03 / LINKS</p>
+          <p class="eyebrow">04 / LINKS</p>
           <h2 id="contact-title">站点链接</h2>
         </div>
         <div class="contact" data-link-list></div>
@@ -73,6 +84,14 @@
       <a href="#top">BACK TO TOP</a>
     </footer>
 
-    <script src="./script.js?v=20260731a"></script>
+    <dialog class="pricing-dialog" aria-labelledby="pricing-title" data-pricing-dialog>
+      <div class="pricing-heading">
+        <h2 id="pricing-title"></h2>
+        <button class="pricing-close" type="button" aria-label="关闭计费规则" title="关闭" data-pricing-close>×</button>
+      </div>
+      <p class="eyebrow">计费规则</p>
+      <div data-pricing-rules></div>
+    </dialog>
+    <script src="./script.js?v=20260922b"></script>
   </body>
 </html>
