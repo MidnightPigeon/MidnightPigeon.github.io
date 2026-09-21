@@ -209,7 +209,10 @@ async function loadServices() {
     serviceList.innerHTML = `
       <table class="service-table" aria-labelledby="services-title">
         <colgroup><col class="service-category"><col><col class="service-price"></colgroup>
-        <thead><tr><th scope="col">板块</th><th scope="col">任务</th><th scope="col">报价</th></tr></thead>
+        <thead>
+          <tr><td colspan="3">本人过往作品可前往Github，Bilibili与网易云音乐查询。</td></tr>
+          <tr><th scope="col">板块</th><th scope="col">任务</th><th scope="col">报价</th></tr>
+        </thead>
         ${groups.map((group) => `<tbody>${group.tasks.map((task, index) => `
           <tr>
             ${index === 0 ? `<th scope="rowgroup" rowspan="${group.tasks.length}">${escapeHtml(group.category)}</th>` : ""}
@@ -222,7 +225,7 @@ async function loadServices() {
             <td><div class="service-quote">${pricingAction(special)}</div></td>
           </tr>
           <tr>
-            <td colspan="3" class="service-contact">快捷联系方式: <a href="mailto:Midnight_Pigeon@outlook.com">Midnight_Pigeon@outlook.com</a></td>
+            <td colspan="3" class="service-contact">快捷联系方式: <a href="mailto:Midnight_Pigeon@outlook.com">Midnight_Pigeon@outlook.com</a> <span>（所有价格为暂定价）</span></td>
           </tr>
         </tbody>
       </table>`;
