@@ -196,25 +196,16 @@ function pricingAction(task) {
   return `<span>${escapeHtml(task.price)}</span><button type="button" class="pricing-trigger" data-pricing aria-haspopup="dialog" aria-label="${escapeHtml(task.name)}：计费规则">计费规则</button>`;
 }
 
-async function loadSpecialService() {
-  const container = document.querySelector("[data-special-service]");
-  if (!container) return;
-  try {
-    const task = await fetchJson("./context/special-service.json");
-    container.innerHTML = `<h3>${escapeHtml(task.name)}</h3><div class="service-quote">${pricingAction(task)}</div>`;
-    bindPricingButtons(container, [task]);
-  } catch {
-    container.textContent = "特殊项目加载失败，请稍后重试。";
-  }
-}
-
 async function loadServices() {
   const serviceList = document.querySelector("[data-service-list]");
   if (!serviceList) return;
 
   serviceList.textContent = "正在加载业务内容……";
   try {
-    const groups = await fetchJson("./context/services.json");
+    const [groups, special] = await Promise.all([
+      fetchJson("./context/services.json"),
+      fetchJson("./context/special-service.json"),
+    ]);
     serviceList.innerHTML = `
       <table class="service-table" aria-labelledby="services-title">
         <colgroup><col class="service-category"><col><col class="service-price"></colgroup>
@@ -225,8 +216,17 @@ async function loadServices() {
             <th scope="row">${escapeHtml(task.name)}</th>
             <td><div class="service-quote">${pricingAction(task)}</div></td>
           </tr>`).join("")}</tbody>`).join("")}
+        <tbody>
+          <tr>
+            <th scope="row" colspan="2">${escapeHtml(special.name)}</th>
+            <td><div class="service-quote">${pricingAction(special)}</div></td>
+          </tr>
+          <tr>
+            <td colspan="3" class="service-contact">快捷联系方式: <a href="mailto:Midnight_Pigeon@outlook.com">Midnight_Pigeon@outlook.com</a></td>
+          </tr>
+        </tbody>
       </table>`;
-    bindPricingButtons(serviceList, groups.flatMap((group) => group.tasks));
+    bindPricingButtons(serviceList, [...groups.flatMap((group) => group.tasks), special]);
   } catch {
     serviceList.textContent = "业务内容加载失败，请稍后重试。";
   }
@@ -234,6 +234,5 @@ async function loadServices() {
 
 loadAbout();
 loadServices();
-loadSpecialService();
 loadProjects();
 loadLinks();

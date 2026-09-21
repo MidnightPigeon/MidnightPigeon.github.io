@@ -432,17 +432,6 @@ h3 {
   text-underline-offset: 4px;
   cursor: pointer;
 }
-.special-service {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px 24px;
-  margin-top: 20px;
-  padding: 16px 0;
-  border-block: 2px solid var(--line);
-}
-.special-service h3 { margin: 0; }
 .pricing-dialog {
   width: min(520px, calc(100% - 32px));
   max-height: calc(100dvh - 48px);
@@ -496,7 +485,6 @@ body:has(.pricing-dialog[open]) { overflow: hidden; }
 }
 
 .service-contact {
-  margin: 18px 0 0;
   overflow-wrap: anywhere;
 }
 
