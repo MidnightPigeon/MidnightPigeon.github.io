@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="MidnightPigeon 的个人主页，记录项目、想法与联系方式。">
     <title>MidnightPigeon</title>
-    <link rel="stylesheet" href="./styles.css?v=20260922c">
+    <link rel="stylesheet" href="./styles.css?v=20261027a">
   </head>
   <body>
     <header class="site-header">
@@ -57,7 +57,10 @@
           <p class="eyebrow">02 / SERVICES</p>
           <h2 id="services-title">承接业务</h2>
         </div>
-        <div data-service-list aria-live="polite"></div>
+        <details class="services-disclosure">
+          <summary>承接艺术、学术、信息及其他业务，<span class="disclosure-expand">点击展开查看</span><span class="disclosure-collapse">点击收起</span></summary>
+          <div data-service-list aria-live="polite"></div>
+        </details>
       </section>
 
       <section class="section" id="projects" aria-labelledby="projects-title">

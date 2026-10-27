@@ -409,6 +409,36 @@ h3 {
   overflow-wrap: anywhere;
 }
 
+.services-disclosure > summary {
+  padding: 14px 16px;
+  border: 2px solid var(--line);
+  background: var(--panel);
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+
+.services-disclosure > summary::marker {
+  color: var(--accent);
+}
+
+.services-disclosure > summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.services-disclosure .disclosure-collapse,
+.services-disclosure[open] .disclosure-expand {
+  display: none;
+}
+
+.services-disclosure[open] .disclosure-collapse {
+  display: inline;
+}
+
+.services-disclosure[open] > summary {
+  border-bottom: 0;
+}
+
 .service-table {
   width: 100%;
   table-layout: fixed;
